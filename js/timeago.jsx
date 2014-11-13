@@ -19,7 +19,14 @@ var moment = require("moment");
 // TODO(joel) i18n
 var TimeAgo = React.createClass({
     mixins: [SetIntervalMixin],
+
+    propTypes: {
+        time: React.PropTypes.string.isRequired,
+        lang: React.PropTypes.string
+    },
+
     render: function() {
+        localisedMoment = this.props.lang ? moment.locale(this.props.lang) : moment;
         return <span>{moment(this.props.time).fromNow()}</span>;
     },
     componentDidMount: function() {
